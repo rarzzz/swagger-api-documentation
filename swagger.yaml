@@ -1,0 +1,224 @@
+swagger: '2.0'
+info:
+  description: xD
+  version: 1.0.0
+  title: Ma ei tea
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: deckofcardsapi.com
+basePath: /api/deck
+tags:
+  - name: pet
+    description: Everything about your Pets
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+schemes:
+  - http
+paths:
+  /new/:
+    get:
+      summary: New deck
+      description: Creates a deck
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+  /new/shuffle/:
+    get:
+      summary: Shuffles cards
+      description: Shuffles new deck
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: query
+          name: deck_count
+          description: Number of decks
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+  '/{deck_id}/draw/':
+    get:
+      summary: Draws cards
+      description: Draws some amount of cards
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: path
+          name: deck_id
+          description: Id of deck
+          required: true
+          type: string
+        - in: query
+          name: count
+          description: Number of cards
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+  '/{deck-id}/shuffle':
+    get:
+      summary: Shuffles existing deck
+      description: Shuffles
+      parameters:
+        - in: path
+          name: deck-id
+          required: true
+          type: string
+          minimum: 1
+          description: The number of decks
+      responses:
+        '200':
+          description: successful operation
+  '/{deck-id}/pile/{pile-name}/add/':
+    get:
+      summary: Add to pile
+      description: Creates a new pile
+      parameters:
+        - in: path
+          name: deck-id
+          required: true
+          type: string
+          minimum: 1
+          description: Deck-ID
+        - in: path
+          name: pile-name
+          required: true
+          type: string
+          description: Pile ID
+        - in: query
+          name: cards
+          required: true
+          type: array
+          items:
+            type: string
+            enum:
+              - AS
+              - 2S
+              - 3S
+              - 4S
+              - 5S
+              - 6S
+              - 7S
+              - 8S
+              - 9S
+              - 0S
+              - JS
+              - QS
+              - KS
+              - AD
+              - 2D
+              - 3D
+              - 4D
+              - 5D
+              - 6D
+              - 7D
+              - 8D
+              - 9D
+              - 0D
+              - JD
+              - QD
+              - KD
+              - AC
+              - 2C
+              - 3C
+              - 4C
+              - 5C
+              - 6C
+              - 7C
+              - 8C
+              - 9C
+              - 0C
+              - JC
+              - QC
+              - KC
+              - AH
+              - 2H
+              - 3H
+              - 4H
+              - 5H
+              - 6H
+              - 7H
+              - 8H
+              - 9H
+              - 0H
+              - JH
+              - QH
+              - KH
+          description: cardID
+      responses:
+        '200':
+          description: successful operation
+  '/{deck-id}/pile/{pile-name}/shuffle':
+    get:
+      summary: Shuffle pile
+      description: Shuffle pile =)
+      parameters:
+        - in: path
+          name: deck-id
+          required: true
+          type: string
+          minimum: 1
+          description: Deck-ID
+        - in: path
+          name: pile-name
+          required: true
+          type: string
+          description: Pile name
+      responses:
+        '200':
+          description: successful operation
+  '/{deck-id}/pile/{pile-name}/list':
+    get:
+      summary: List pile cards
+      description: Lists cards in a pile
+      parameters:
+        - in: path
+          name: deck-id
+          required: true
+          type: string
+          minimum: 1
+          description: Deck-ID
+        - in: path
+          name: pile-name
+          required: true
+          type: string
+          description: Pile name
+      responses:
+        '200':
+          description: successful operation
+  '/{deck-id}/pile/{pile-name}/draw/':
+    get:
+      summary: Draws cards from a pile
+      description: Draw an amount of cards from a pile
+      parameters:
+        - in: path
+          name: deck-id
+          required: true
+          type: string
+          minimum: 1
+          description: Deck-ID
+        - in: path
+          name: pile-name
+          required: true
+          type: string
+          description: Pile name
+        - in: query
+          name: count
+          required: true
+          type: integer
+          description: Card numero
+      responses:
+        '200':
+          description: successful operation
